@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Клонируем репозиторий
+      - uses: actions/checkout@v4
+      # Устанавливаем Node.js
+      - uses: actions/setup-node@v4
       - uses: make setup
       - uses: make test
       - uses: make lint
