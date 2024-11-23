@@ -1,0 +1,12 @@
+name: start
+on: push
+jobs: 
+  prepare: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: make setup
+      - uses: make test
+      - uses: make lint
+
+
