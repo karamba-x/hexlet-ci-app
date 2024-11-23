@@ -1,16 +1,29 @@
 name: start
 on: push
-jobs: 
-  prepare: 
+
+jobs:
+  prepare:
     runs-on: ubuntu-latest
 
     steps:
       # Клонируем репозиторий
-      - uses: actions/checkout@v4
-      # Устанавливаем Node.js
-      - uses: actions/setup-node@v4
-      - uses: make setup
-      - uses: make test
-      - uses: make lint
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      # Устанавливаем Node.js (указываем нужную версию)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Укажи нужную версию Node.js
 
+      # Выполняем команду make setup
+      - name: Run setup
+        run: make setup
+
+      # Выполняем тесты
+      - name: Run tests
+        run: make test
+
+      # Запускаем линтер
+      - name: Run linter
+        run: make lint
